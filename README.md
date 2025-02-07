@@ -89,7 +89,7 @@ Result: 42
 Future resolved to 42
 ```
 
-See `example` directory for more usage examples.
+See `examples` directory for more usage examples.
 
 ## License
 
