@@ -1,8 +1,8 @@
 # Futures (for Golang)
 
-The go-future module provides a tiny, dependency‑free implementation of futures (single‑value promises) that works nicely with Go’s existing concurrency primitives - if you only need to produce a single value once and let any number of goroutines read it later, future is a clear, safer abstraction.
+The go-future module provides a tiny, dependency‑free implementation of futures (single‑value promises) that works nicely with Go’s existing concurrency primitives - if you only need to produce a single value once and let any number of goroutines read it later, future is a clear, safe abstraction.
 
-A Future[T] is a lock‑free container that can be resolved exactly once and then read from any goroutine. They behave much like a channel with a capacity of 1: they hold a single value that can be produced once and consumed by any number of goroutines, and they provide a signaling mechanism (the Done channel) that is closed when the value becomes available, mirroring the way a buffered‑1 channel becomes readable once a send occurs.
+A Future[T] is a container that can be resolved exactly once and then read from any goroutine. They behave much like a channel with a capacity of 1: they hold a single value that can be produced once and consumed later (but any number of times, by any number of goroutines). They also provide a signaling mechanism (the Done channel) that is closed when the value becomes available, mirroring the way a buffered‑1 channel becomes readable once a send occurs.
 
 The key distinction lies in broadcast capability - while a single‑value channel can be received by only one goroutine before it becomes empty again, a future stores the result and allows any number of receivers to obtain the same value after it is resolved, enabling the possibility to effectively broadcast a single result to many listeners. Additionally, futures never need to be closed, so users are freed from implementing any special channel‑closing logic when sharing a value across multiple goroutines.
 
