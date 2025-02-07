@@ -1,0 +1,11 @@
+
+.temp
+.tmp
+
+/bin
+/dependencies
+/dist
+/temp
+/tmp
+/tools/dependencies
+/examples/dependencies
