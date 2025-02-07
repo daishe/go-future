@@ -12,9 +12,8 @@ import (
 func asyncOperation() *future.Future[int] {
 	f := &future.Future[int]{}
 	go func() {
-		// Simulate work
-		time.Sleep(500 * time.Millisecond)
-		f.Resolve(42) // resolve exactly once
+		time.Sleep(500 * time.Millisecond) // simulate work
+		f.Resolve(42)
 	}()
 	return f
 }
@@ -27,7 +26,7 @@ func main() {
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		fmt.Println("Result:", f.Get()) // → Result: 42
+		fmt.Println("Result:", f.Get())
 	}()
 
 	// (2) Client that react to completion via Done()
